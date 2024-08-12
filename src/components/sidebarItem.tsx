@@ -1,28 +1,16 @@
 import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
 import { useNavigate } from "react-router-dom";
-import { authStatusStore } from "../store/authStatusStore";
-import { confirmNotification } from "../utils/utils";
 type sidebarItemProps = {
   text: string;
   children: React.ReactNode;
   to: string;
+  onEnterPress?: ()=>void
 };
 
-function SideBarItem({ text, children, to }: sidebarItemProps) {
+function SideBarItem({ text, children, to, onEnterPress:onEnter }: sidebarItemProps) {
   const navigate = useNavigate();
-  const { logout } = authStatusStore();
-
   const onEnterPress = () => {
-    if (to == "") {
-      return confirmNotification({
-        icon: "question",
-        title: "¿Desea salir de la aplicación?",
-        onConfirm: () => {
-          logout();
-        },
-      });
-      // logout()
-    }
+    if (onEnter !== undefined) return onEnter()
     navigate(to);
   };
 

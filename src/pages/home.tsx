@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import "../assets/style.css";
 import Sidebar from "../components/sidebar";
 
-
 function HomeRoot() {
 
     return (

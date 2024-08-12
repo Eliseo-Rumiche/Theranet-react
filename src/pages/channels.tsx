@@ -2,25 +2,17 @@ import {
   FocusContext,
   useFocusable,
 } from "@noriginmedia/norigin-spatial-navigation";
-import { categorieChannel, ChannelResponse } from "../types";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { getChannels } from "../services/api";
 import Loader from "../components/loader";
 import CategorieSlider from "../components/categorieSlider";
+import { useCategories } from "../hooks/useCategories";
+import { useCallback } from "react";
 
 function ChannelsPage() {
+  const { loading, categoriesData } = useCategories();
   const { ref, focusKey } = useFocusable({
-    forceFocus:true,
-    focusKey :"channelsContent"
+    forceFocus: true,
+    focusKey: "CHANNELS",
   });
-  const [categoriesData, setCategoriesData] = useState<categorieChannel[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const getCategoryeData = async () => {
-    const res: ChannelResponse = await getChannels();
-    setCategoriesData(res.data);
-    setLoading(false);
-  };
 
   const onCategorieFocus = useCallback(
     ({ y }: { y: number }) => {
@@ -31,10 +23,6 @@ function ChannelsPage() {
     },
     [ref]
   );
-
-  useEffect(() => {
-    getCategoryeData();
-  }, []);
 
   if (loading) return <Loader />;
 
@@ -48,7 +36,7 @@ function ChannelsPage() {
             onFocus={onCategorieFocus}
           />
         ))}
-        </div>
+      </div>
     </FocusContext.Provider>
   );
 }

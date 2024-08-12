@@ -1,0 +1,76 @@
+.modalAlert {
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 9999;
+}
+.modalAlert .modal-content {
+  width: 500px;
+  height: 250px;
+  position: relative;
+  background-color: #0f1117;
+  color: white;
+  border-radius: 1rem;
+  border: 1px solid rgb(189, 181, 181);
+  box-shadow: rgba(212, 211, 218, 0.15) 0px 48px 100px 0px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.modalAlert .modal-content::before {
+  content: "";
+  background-color: #212323;
+  border-radius: 56%;
+  /* filter: blur(60px); */
+  opacity: 0.15;
+  position: absolute;
+  top: 13px;
+  right: -22em;
+  width: 56em;
+  height: 25em;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+.modalAlert .modal-content .modal-icon {
+  margin: 10px;
+  font-size: 80px;
+  box-shadow: rgba(164, 159, 159, 0.45) 0px 25px 20px -20px;
+  z-index: 1;
+}
+.modalAlert .modal-content .modal-body {
+  width: 280px;
+  z-index: 2;
+}
+.modalAlert .modal-content .modal-body .modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+.modalAlert .modal-content .modal-body .modal-buttons  button {
+  background-color: rgba(96, 97, 113, 0.543);
+  border: 1px rgb(192, 182, 182) solid;
+  margin-top: 20px;
+  margin: 20px;
+
+}
+.modalAlert .modal-content .modal-body .modal-buttons  button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  z-index: 50;
+}
+
+.btn-alert-active {
+  background-color: white !important;
+  color: black;
+  border: 1px solid white;
+  z-index: 50;
+}

@@ -26,6 +26,7 @@ function channelCard({ image, name, onFocus, slug }: channelCardProps) {
             <img
                 src={image}
                 alt={name}
+                loading="lazy"
             />
             <div className="movie-info">
                 <h3 className="movie-title">{name}</h3>
@@ -33,6 +34,5 @@ function channelCard({ image, name, onFocus, slug }: channelCardProps) {
         </div>
     );
 }
-// https://codepen.io/hourwinner/pen/gOaWdNy
 export default channelCard;
 

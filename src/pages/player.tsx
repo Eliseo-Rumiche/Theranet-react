@@ -2,11 +2,24 @@ import JWPlayer from "@jwplayer/jwplayer-react";
 import { useNavigate } from "react-router-dom";
 
 function PlayerPage() {
-
   const navigate = useNavigate();
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") navigate("/");
+    if (jwplayer().id == undefined) return;
+
+    switch (e.keyCode) {
+      case 27:
+        navigate("/");
+        break;
+      case 415:
+        jwplayer().play();
+        break;
+      case 19:
+        jwplayer().pause();
+        break;
+      default:
+        break;
+    }
   });
 
   const config = {
@@ -21,10 +34,10 @@ function PlayerPage() {
     mute: false,
   };
 
-  const didMountCallback = ()=>{
-    jwplayer().setFullscreen(true)
-    jwplayer().setMute(false)
-  }
+  const didMountCallback = () => {
+    jwplayer().setFullscreen(true);
+    jwplayer().setMute(false);
+  };
 
   return (
     <JWPlayer
